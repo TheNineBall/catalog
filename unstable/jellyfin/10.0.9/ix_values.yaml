@@ -1,0 +1,26 @@
+image:
+  repository: jellyfin/jellyfin
+  pullPolicy: IfNotPresent
+  tag: 20220329.4-unstable@sha256:b5f8dabbe739848248f8d490157e50a1ec9c08003dfca71b841dba36e9c8a873
+
+securityContext:
+  readOnlyRootFilesystem: false
+
+env:
+  JELLYFIN_PublishedServerUrl: "https://jelly.mydomain.com"
+
+service:
+  main:
+    ports:
+      main:
+        port: 8096
+        targetPort: 8096
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+  cache:
+    enabled: true
+    mountPath: "/cache"
+    type: "emptyDir"
